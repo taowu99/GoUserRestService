@@ -104,7 +104,7 @@ func test() {
 	fmt.Println(arr, ar)
 
 	slc := arr[:]
-	slc2 := []int{1, 2, 3}
+	slc2 := []int{1, 2, 31}
 	arr[1] = 999
 	slc = append(slc, 90)
 	arr[0] = 0
