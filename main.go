@@ -117,6 +117,7 @@ func test() {
 	v := map[string]int{"a": 1, "b": 2}
 	v["c"] = 3
 	delete(v, "a")
+	delete(v, "ab")
 	fmt.Println(v)
 
 	type user struct {
