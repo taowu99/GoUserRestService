@@ -3,6 +3,8 @@ package main
 import (
 	"fmt"
 	"net/http"
+	"os"
+	"reflect"
 
 	"github.com/taowu99/webservice/controllers"
 
@@ -25,9 +27,42 @@ func main3() {
 	}
 }
 
-func main() {
+func main_http() {
 	controllers.RegisterControllers()
 	http.ListenAndServe(":3000", nil)
+}
+
+var gc = 9
+
+func main() {
+	slc := []int{11, 12, 13}
+	fmt.Println(slc)
+	changeSlc2(slc)
+	changeSlc(&slc)
+	fmt.Println(slc)
+}
+
+func changeSlc2(data []int) {
+	data[0] = 101
+}
+
+func changeSlc(data *[]int) {
+	*data = append(*data, 14)
+}
+
+func main1() {
+	const ca = 9.000
+	var b = 45
+	type tmp int
+	a := tmp(10)
+	a = a + tmp(b)
+	fmt.Println(reflect.TypeOf(ca), ca, len(os.Args), os.Args)
+	fmt.Println(reflect.TypeOf(&a), a)
+
+	slc := []string{"a", "b", "d"}
+	fmt.Println(len(slc), cap(slc))
+	slc = append(slc, "hah")
+	fmt.Println(len(slc), cap(slc))
 }
 
 func main2() {
