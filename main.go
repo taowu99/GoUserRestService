@@ -1,15 +1,24 @@
 package main
 
 import (
+	"errors"
 	"fmt"
 	"net/http"
 	"os"
 	"reflect"
 
 	"github.com/taowu99/webservice/controllers"
-
+	"github.com/taowu99/webservice/leetcode"
 	"github.com/taowu99/webservice/models"
 )
+
+func testReturn(d1 float64, d2 float64) (res float64, err error) {
+	if d2 == 0 {
+		err = errors.New("Can't devide by zero")
+	}
+	res = d1 / d2
+	return
+}
 
 func main3() {
 	mp := map[string]int{"tao": 1, "wu": 2}
@@ -34,12 +43,72 @@ func main_http() {
 
 var gc = 9
 
-func main() {
+func main5() {
+	// solution := leetcode.Constructor(4, []int{0, 2})
+	// println(solution.Pick(), solution.Pick(), solution.Pick(), solution.Pick(), solution.Pick(), solution.Pick())
+	solution := leetcode.Constructor(4, []int{2, 1})
+	fmt.Println(solution.Pick(), solution.Pick(), solution.Pick(), solution.Pick(), solution.Pick(), solution.Pick())
+	// fmt.Println(leetcode2.TestHi())
+}
+
+func main4() {
 	slc := []int{11, 12, 13}
 	fmt.Println(slc)
 	changeSlc2(slc)
 	changeSlc(&slc)
 	fmt.Println(slc)
+
+	func() {
+		fmt.Println("Hello World, I am anonymous funciton")
+	}()
+
+	fa := func(name string) {
+		fmt.Printf("Hello World, I am anonymous funciton [%s]\n", name)
+	}
+
+	fa("function 2")
+
+	// fmt.Printf("%f", double(3, 2, mathExpression(SubtractExpr)))
+	testDefer()
+}
+
+// func mathExpress(expr MathExpr) {
+// 	switch expr {
+// 	case AddExpr:
+// 		return simplemath.Add
+// 	case SubtractExpr:
+// 		return simplemath.Subtract
+// 	case MultiplyExpr:
+// 		return simplemath.Multiple
+// 	default:
+// 		return func(f, f2 float64) float64 {
+// 			return 0
+// 		}
+// 	}
+// }
+
+func testDefer() {
+	defer func() {
+		fmt.Println("This is 1st defer")
+	}()
+
+	for i := 1; i <= 10; i = i + 1 {
+		cc := i
+		defer func() {
+			fmt.Printf("This is %d defer function\n", cc)
+		}()
+		fmt.Println(i)
+		if i == 2 {
+			return
+		}
+	}
+	defer func() {
+		fmt.Println("this is 2nd defer")
+	}()
+}
+
+func double(f1, f2 float64, mathExpr func(float64, float64) float64) float64 {
+	return 2 * mathExpr(f1, f2)
 }
 
 func changeSlc2(data []int) {
