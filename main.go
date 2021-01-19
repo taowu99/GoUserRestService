@@ -38,8 +38,17 @@ func main() {
 	slc := []int{11, 12, 13}
 	fmt.Println(slc)
 	changeSlc2(slc)
+	fmt.Println(slc)
+	//changeSlc3(&slc)
+	// slc = slc[:len(slc)-1]
+	slc = changeSlc3(slc)
+	fmt.Println(slc)
 	changeSlc(&slc)
 	fmt.Println(slc)
+}
+
+func changeSlc3(data []int) []int {
+	return data[:len(data)-1]
 }
 
 func changeSlc2(data []int) {
